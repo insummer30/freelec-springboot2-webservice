@@ -35,5 +35,7 @@ repositories {
 dependencies {
     // 프로젝트 의존성 추가
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok') // 이걸 추가해줘야 제대로 작동함.
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
