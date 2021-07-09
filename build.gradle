@@ -1,0 +1,39 @@
+// buildscript는 gradle 설정과 관련이 있음. 이 안에 쓰는 것과 밖에 쓰는 것은 다르다.
+buildscript {
+    // ext: build.gradle에서 사용하는 전역 변수를 선언하는 것
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        // 메이븐 중앙 저장소 연결
+        mavenCentral()
+        // 최근에 많이 쓴다는 원격 저장소
+        jcenter()
+    }
+    dependencies {
+        // 스프링부트 그레이들 플러그인 의존성 추가
+        // 스프링부트 의존성 관리해주고, 애플리케이션 패키징을 도와주는 플러그인
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 앞서 정의한 의존성에서 필요한 플러그인을 적용하기
+// 아래 4가지는 자바와 스프링부트를 사용하기 위한 필수 플러그인들이라고 함
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' // 이것이 스프링부트 의존성 관리해줌
+
+group 'me.tom'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 프로젝트 의존성 추가
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
