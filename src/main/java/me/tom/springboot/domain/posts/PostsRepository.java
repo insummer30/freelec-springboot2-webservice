@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * [주의점]
  *  - Entity와 Entity Repository는 같은 폴더에 존재해야 한다.
  */
-public interface PostRepository extends JpaRepository<Posts, Long> {
+public interface PostsRepository extends JpaRepository<Posts, Long> {
 
 }
