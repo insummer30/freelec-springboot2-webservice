@@ -7,15 +7,15 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.hamcrest.Matchers.is;
 
 // JUnit으로 스프링부트를 띄워서 테스트할 수 있게 해줌. (JUnit4)
 @RunWith(SpringRunner.class)
 // spring MVC를 테스트 하기 위함.
 // 웹상에서 테스트하기 힘든 컨트롤러를 테스트할 수 있음. @Controller, @ControllerAdvice 지원
-@WebMvcTest
+@WebMvcTest(controllers = {HelloController.class})
 public class HelloControllerTest {
 
     @Autowired
