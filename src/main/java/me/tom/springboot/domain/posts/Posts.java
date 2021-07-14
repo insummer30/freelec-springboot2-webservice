@@ -3,13 +3,14 @@ package me.tom.springboot.domain.posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.tom.springboot.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor  // 롬복, 기본생성자 자동추가
 @Entity             // JPA 애노테이션, 테이블과 링크될 클래스라는 것을 의미. (기본으로 카멜케이스 클래스 이름을 언더스코어 네이밍의 테이블에 매칭)
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id // 테이블의 PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) // PK 생성 규칙, auto_increment

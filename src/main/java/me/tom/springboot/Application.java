@@ -2,7 +2,10 @@ package me.tom.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+// JPA Auditing 어노테이션을 모두 활성화 하기 위해 추가함.
+@EnableJpaAuditing
 // 스프링부트의 자동 설정, 스프링 빈 스캔 및 생성을 모두 자동으로 해줌.
 // 웬만하면 항상 패키지 최상위에 위치하는게 좋다.
 @SpringBootApplication
