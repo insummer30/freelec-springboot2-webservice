@@ -40,4 +40,5 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile('org.springframework.boot:spring-boot-starter-data-jpa') // 스프링부트용 Spring Data JPA 스타터
     compile('com.h2database:h2') // 인메모리 RDB, 애플리케이션 재시작시 마다 초기화 됨 (테스트 용도로 많이 씀)
+    compile('org.springframework.boot:spring-boot-starter-mustache') // 머스테치 템플릿 엔진 의존성 추가
 }
