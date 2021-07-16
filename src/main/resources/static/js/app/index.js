@@ -8,6 +8,14 @@ var index = {
         $('#btn-save').on('click', function() {
             _this.save();
         });
+
+        $('#btn-update').on('click', function() {
+            _this.update();
+        });
+
+        $('#btn-delete').on('click', function() {
+            _this.delete();
+        })
     },
 
     // 게시글을 저장하는 역할을 해준다.
@@ -26,6 +34,44 @@ var index = {
             data: JSON.stringify(data)
         }).done(function() {
             alert('글이 등록 되었습니다.');
+            window.location.href = '/';
+        }).fail(function(error) {
+            alert(JSON.stringify(error));
+        });
+    },
+
+    update: function() {
+        var data = {
+            title: $('#title').val(),
+            content: $('#content').val()
+        };
+
+        let id = $('#id').val();
+
+        $.ajax({
+            type: 'PUT',
+            url: '/api/v1/posts/' + id,
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('글이 수정되었습니다.');
+            window.location.href = '/';
+        }).fail(function(error) {
+            alert(JSON.stringify(error));
+        });
+    },
+
+    delete: function() {
+        let id = $('#id').val();
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v1/posts/' + id,
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8'
+        }).done(function() {
+            alert('글이 삭제되었습니다.');
             window.location.href = '/';
         }).fail(function(error) {
             alert(JSON.stringify(error));

@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -104,6 +101,29 @@ public class PostsApiControllerTest {
         assertThat(postsList.size()).isGreaterThan(0);
         assertThat(postsList.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(postsList.get(0).getContent()).isEqualTo(expectedContent);
+    }
+
+    @Test
+    public void Posts_삭제된다() {
+        // given
+        Posts posts = postsRepository.save(
+                Posts.builder()
+                        .title("title")
+                        .content("content")
+                        .author("author")
+                        .build()
+        );
+
+        Long deleteId = posts.getId();
+        String url = "http://localhost:" + port + "/api/v1/posts/" + deleteId;
+        HttpEntity<Long> requestEntity = new HttpEntity<>(deleteId);
+
+        // when
+        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, Long.class);
+
+        // then
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody()).isEqualTo(deleteId);
     }
 
 }

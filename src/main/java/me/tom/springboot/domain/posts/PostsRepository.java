@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface PostsRepository extends JpaRepository<Posts, Long> {
 
-    // 아이디 순서로 읽어오는거
+    // 아이디 순서로 읽어오는거 (Posts는 클래스 이름이랑 대소문자가 일치해야 한다. 음 왜지?)
     @Query("SELECT p FROM Posts p ORDER BY p.id DESC")
     List<Posts> findAllDesc();
 

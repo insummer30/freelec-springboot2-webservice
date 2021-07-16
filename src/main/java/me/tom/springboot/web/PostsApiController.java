@@ -17,12 +17,20 @@ public class PostsApiController {
         return postsService.save(requestDto);
     }
 
+    // 게시글 수정 API
     @PutMapping("/api/v1/posts/{id}")
     public Long update(
             @PathVariable("id") Long id,
             @RequestBody PostsUpdateRequestDto requestDto
     ) {
         return postsService.update(id, requestDto);
+    }
+
+    // 게시글 삭제 API
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete(@PathVariable("id") Long id) {
+        postsService.delete(id);
+        return id;
     }
 
 }
