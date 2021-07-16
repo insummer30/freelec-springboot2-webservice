@@ -1,6 +1,9 @@
 package me.tom.springboot.domain.posts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 /**
  * DB 접근 레이어 (흔히 DAO라고 불리는거)
@@ -10,5 +13,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *  - Entity와 Entity Repository는 같은 폴더에 존재해야 한다.
  */
 public interface PostsRepository extends JpaRepository<Posts, Long> {
+
+    // 아이디 순서로 읽어오는거
+    @Query("SELECT p FROM Posts p ORDER BY p.id DESC")
+    List<Posts> findAllDesc();
 
 }
