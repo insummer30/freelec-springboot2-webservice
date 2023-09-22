@@ -2,3 +2,6 @@
 .idea
 /build
 /bin
+
+# 구글 소셜 로그인 클라이언트 정보가 github에 노출되지 않도록 보안 파일은 ignore 수행시킴
+application-oauth.properties
